@@ -1,0 +1,25 @@
+{
+  "cli": {
+    "__pycache__": {
+      "doc.cpython-312.pyc": null,
+      "monitor.cpython-312.pyc": null,
+      "summarize.cpython-312.pyc": null,
+      "visualize.cpython-312.pyc": null
+    },
+    "doc.py": null,
+    "monitor.py": null,
+    "summarize.py": null,
+    "visualize.py": null
+  },
+  "core": {
+    "__pycache__": {
+      "json.cpython-312.pyc": null,
+      "visualizer.cpython-312.pyc": null
+    },
+    "json.py": null,
+    "visualizer.py": null
+  },
+  "main.py": null,
+  "pyproject.toml": null,
+  "requirements.txt": null
+}

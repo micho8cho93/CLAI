@@ -6,22 +6,24 @@ from graphviz import Digraph
 
 console = Console()
 
-def print_tree_console(path: str):
+def print_tree_console(path: str, max_depth: int = 10):
     """Print directory as tree using rich"""
     path = Path(path)
     tree = Tree(f"[bold blue]{path.name}/")
 
-    def add_branch(directory: Path, parent_tree: Tree):
+    def add_branch(directory: Path, parent_tree: Tree, current_depth: int):
+        if current_depth > max_depth:
+            return
         for item in sorted(directory.iterdir()):
             if item.name.startswith('.' or '..') :
                 continue #skip hidden files/folders 
             if item.is_dir():
                 branch = parent_tree.add(f"[bold magenta]{item.name}/")
-                add_branch(item, branch)
+                add_branch(item, branch, current_depth + 1)
             else: 
                 parent_tree.add(f"{item.name}")
 
-    add_branch(path, tree)
+    add_branch(path, tree, 1)
     console.print(tree)
 
 
