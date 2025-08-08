@@ -1,17 +1,18 @@
 import typer
+from cli import monitor, doc, visualize, summarize
 
-app = typer.Typer()
+app = typer.Typer(help="CLAI is a CLI AI assistant to "
+                        "that helps developers summarize and visualize codebases,"
+                        "create technical documentation, "
+                        "and monitor & report real-time changes to your codebase."
+                        "Our advice is to use CLAI to help you better understand and communicate"
+                        "about codebases and monitor changes made by other CLI AI tools.")
 
-@app.command()
-def hello(name: str):
-    print(f"Hello {name}!")
 
-@app.command()
-def goodbye(name: str, formal: bool = False):
-    if formal:
-        print(f"Goodbye Mr.{name}, take care.")
-    else: 
-        print(f"Peace {name}")
+app.add_typer(monitor.app, name='monitor')
+app.add_typer(doc.app, name='doc')
+app.add_typer(summarize.app, name='summarize')
+app.add_typer(visualize.app, name='visualize')
 
 
 if __name__ == "__main__":
