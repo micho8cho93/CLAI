@@ -1,24 +1,28 @@
 from pathlib import Path
-from llama_cpp import Llama
+from langchain_ollama import ChatOllama
+from langchain_core.messages import HumanMessage, SystemMessage
 import json
 
-def build_structure_prompt(structure_path: Path) -> str:
+def run_llm(structure_path: Path):
+    """
+    Run LLM analysis on the project structure
+    """
+    llm = ChatOllama(
+        model="llama3.2",
+        temperature=0
+    )
+    
+    # Load the structure file
     with structure_path.open("r", encoding="utf-8") as f:
         structure = json.load(f)
-    
-    prompt = (
-        "You are a codebase analysis assistant. Given the following project structure in JSON format, "
-        "provide:\n\n"
-        "1. A brief summary of what the project might be.\n"
-        "2. A list of the main components (e.g., API, frontend, utilities).\n"
-        "3. Any concerns or unusual patterns.\n\n"
-        "Project Structure:\n"
-        f"{json.dumps(structure, indent=2)}"
-    )
-    return prompt
 
+    # Create messages using LangChain message types
+    messages = [
+        SystemMessage(content="You are a helpful assistant analyzing project structures."),
+        HumanMessage(content=f"Analyze the following project structure JSON:\n{json.dumps(structure, indent=2)}"
+                    "\n\nPlease provide:\n1. A brief summary of what the project might be.\n2. A list of main components.\n3. Any concerns or unusual patterns.")
+    ]
 
-def run_llm(prompt: str, model_path: str = "model.gguf"):
-    llm = Llama(model_path=model_path)
-    output = llm(prompt, max_tokens=512, stop=["\n\n"])
-    return output["choices"][0]["text"]
+    # Invoke the model and return the content
+    response = llm.invoke(messages)
+    return response.content
