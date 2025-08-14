@@ -20,7 +20,8 @@ def run_llm(structure_path: Path):
     messages = [
         SystemMessage(content="You are a helpful assistant analyzing project structures."),
         HumanMessage(content=f"Analyze the following project structure JSON:\n{json.dumps(structure, indent=2)}"
-                    "\n\nPlease provide:\n1. A brief summary of what the project might be.\n2. A list of main components.\n3. Any concerns or unusual patterns.")
+                    "\n\nPlease provide:\n1. A brief summary of what the project might be." \
+                    "\n2. A list of main components.\n3. Any concerns or unusual patterns.")
     ]
 
     # Invoke the model and return the content
