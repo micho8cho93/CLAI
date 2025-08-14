@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Set
 from datetime import datetime
 from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler, FileModifiedEvent
+from watchdog.events import FileSystemEventHandler
 from core.llm import run_llm
 
 class CodebaseMonitor(FileSystemEventHandler):
