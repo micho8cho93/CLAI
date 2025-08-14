@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clai"
+version = "0.1.0"
+description = "CLI AI tool to monitor and report on codebase structure, changes, and potential issues."
+authors = [
+    { name="micho8cho93", email="you@example.com" }
+]
+dependencies = [
+    "typer[all]"
+]
+requires-python = ">=3.8"
+
+[project.scripts]
+clai = "main:app"

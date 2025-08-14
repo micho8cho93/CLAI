@@ -4,7 +4,7 @@ from core.llm import run_llm
 
 app = typer.Typer(help="Generate summaries of the codebase")
 
-@app.command("create")
+@app.command("summary")
 def create_summary(
     file: Path = typer.Option("structure.json", help="Path to project structure JSON"),
 ):

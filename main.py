@@ -9,9 +9,9 @@ app = typer.Typer(help="CLAI is a CLI AI assistant to "
                         "about codebases and monitor changes made by other CLI AI tools.")
 
 
-app.add_typer(monitor.app, name='monitor')
+app.add_typer(monitor.app)
 app.add_typer(doc.app, name='doc')
-app.add_typer(summarize.app, name='summarize')
+app.add_typer(summarize.app)
 app.add_typer(visualize.app)
 
 
