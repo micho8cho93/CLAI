@@ -10,7 +10,7 @@ app = typer.Typer(help="CLAI is a CLI AI assistant to "
 
 
 app.add_typer(monitor.app)
-app.add_typer(doc.app, name='doc')
+app.add_typer(doc.app,)
 app.add_typer(summarize.app)
 app.add_typer(visualize.app)
 

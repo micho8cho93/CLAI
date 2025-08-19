@@ -89,6 +89,7 @@ class CodebaseMonitor(FileSystemEventHandler):
             # Get file content and analyze
             analysis = self.llm_analyzer.analyze_file_change(file_path, change_type)
             
+            #adding comment to see if this function does anything
             typer.echo("📊 Analysis Result:")
             typer.echo("-" * 50)
             typer.echo(analysis)

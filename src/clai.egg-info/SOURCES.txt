@@ -14,5 +14,6 @@ src/cli/visualize.py
 src/core/__init__.py
 src/core/json.py
 src/core/llm.py
+src/core/markdown.py
 src/core/update_monitor.py
 src/core/visualizer.py
