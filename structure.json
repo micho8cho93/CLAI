@@ -1,30 +1,50 @@
 {
-  "cli": {
-    "__pycache__": {
-      "doc.cpython-312.pyc": null,
-      "monitor.cpython-312.pyc": null,
-      "summarize.cpython-312.pyc": null,
-      "visualize.cpython-312.pyc": null
-    },
-    "doc.py": null,
-    "monitor.py": null,
-    "summarize.py": null,
-    "visualize.py": null
-  },
-  "core": {
-    "__pycache__": {
-      "json.cpython-312.pyc": null,
-      "llm.cpython-312.pyc": null,
-      "update_monitor.cpython-312.pyc": null,
-      "visualizer.cpython-312.pyc": null
-    },
-    "json.py": null,
-    "llm.py": null,
-    "update_monitor.py": null,
-    "visualizer.py": null
-  },
-  "main.py": null,
   "pyproject.toml": null,
   "requirements.txt": null,
+  "src": {
+    "__pycache__": {
+      "main.cpython-312.pyc": null
+    },
+    "clai.egg-info": {
+      "PKG-INFO": null,
+      "SOURCES.txt": null,
+      "dependency_links.txt": null,
+      "entry_points.txt": null,
+      "requires.txt": null,
+      "top_level.txt": null
+    },
+    "cli": {
+      "__init__.py": null,
+      "__pycache__": {
+        "__init__.cpython-312.pyc": null,
+        "doc.cpython-312.pyc": null,
+        "main.cpython-312.pyc": null,
+        "monitor.cpython-312.pyc": null,
+        "summarize.cpython-312.pyc": null,
+        "visualize.cpython-312.pyc": null
+      },
+      "doc.py": null,
+      "main.py": null,
+      "monitor.py": null,
+      "summarize.py": null,
+      "visualize.py": null
+    },
+    "core": {
+      "__init__.py": null,
+      "__pycache__": {
+        "__init__.cpython-312.pyc": null,
+        "json.cpython-312.pyc": null,
+        "llm.cpython-312.pyc": null,
+        "markdown.cpython-312.pyc": null,
+        "update_monitor.cpython-312.pyc": null,
+        "visualizer.cpython-312.pyc": null
+      },
+      "json.py": null,
+      "llm.py": null,
+      "markdown.py": null,
+      "update_monitor.py": null,
+      "visualizer.py": null
+    }
+  },
   "structure.json": null
 }

@@ -1,7 +1,7 @@
 import typer
 import time
 from pathlib import Path
-from typing import Set
+from typing import Set, Iterator
 from datetime import datetime
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -89,10 +89,13 @@ class CodebaseMonitor(FileSystemEventHandler):
             # Get file content and analyze
             analysis = self.llm_analyzer.analyze_file_change(file_path, change_type)
             
-            #adding comment to see if this function does anything
             typer.echo("📊 Analysis Result:")
             typer.echo("-" * 50)
-            typer.echo(analysis)
+            full_response = ""
+            for chunk in analysis:
+                typer.echo(chunk, nl=False)
+                full_response += chunk
+            typer.echo()  # for the final newline
             typer.echo("-" * 50)
             typer.echo("✅ Monitoring continues...\n")
             
@@ -108,13 +111,14 @@ class LLMAnalyzer:
         self.SystemMessage = SystemMessage
         self.HumanMessage = HumanMessage
         
-    def analyze_file_change(self, file_path: str, change_type: str) -> str:
+    def analyze_file_change(self, file_path: str, change_type: str) -> Iterator[str]:
         """Analyze a specific file change"""
         try:
             # Read file content
             path_obj = Path(file_path)
             if not path_obj.exists():
-                return f"File {file_path} no longer exists."
+                yield f"File {file_path} no longer exists."
+                return
                 
             with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                 content = f.read()
@@ -141,8 +145,10 @@ class LLMAnalyzer:
                 Please analyze this change and provide insights.""")
             ]
             
-            response = self.llm.invoke(messages)
-            return response.content
+            response = self.llm.stream(messages)
+            for chunk in response:
+                yield chunk.content
+            
             
         except Exception as e:
-            return f"Error analyzing file: {str(e)}"
+            yield f"Error analyzing file: {str(e)}"

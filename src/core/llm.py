@@ -1,9 +1,10 @@
 from pathlib import Path
 from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage, SystemMessage
+from typing import Iterator
 import json
 
-def run_llm(structure_path: Path):
+def run_llm(structure_path: Path) -> Iterator[str]:
     """
     Run LLM analysis on the project structure
     """
@@ -24,6 +25,7 @@ def run_llm(structure_path: Path):
                     "\n2. A list of main components.\n3. Any concerns or unusual patterns.")
     ]
 
-    # Invoke the model and return the content
-    response = llm.invoke(messages)
-    return response.content
+    # Invoke the model and stream the content
+    response = llm.stream(messages)
+    for chunk in response:
+        yield chunk.content

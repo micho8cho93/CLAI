@@ -19,7 +19,8 @@ def create_summary(
     try:
         response = run_llm(structure_path=file)
         typer.echo("\nSummary:\n")
-        typer.echo(response)
+        for chunk in response:
+            typer.echo(chunk, nl=False)
     except Exception as e:
         typer.echo(f"Error: {str(e)}", err=True)
         raise typer.Exit(1)
